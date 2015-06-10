@@ -18,11 +18,11 @@ class Lists
   def li_tag(line)
     if line[0] == '*'
       line.slice!(0..1)
-      line.insert(0,'<li>')
+      line.insert(0,"\t<li>")
       line.insert(-1,"</li>\n")
     else
       line.slice!(0..2)
-      line.insert(0,'<li>')
+      line.insert(0,"\t<li>")
       line.insert(-1,"</li>\n")
     end
   end

@@ -46,7 +46,7 @@ class Header
   end
 
   def remove_hashes
-    @header.gsub!('#','')
+    hashes_gone = @header.gsub!('#','')
   end
 
   def get_tag
@@ -55,8 +55,8 @@ class Header
 
   def add_header_tag
     num = count_hashes
-    add_front_tag = get_tag.insert(0,'<h' + num + '>')
-    add_end_tag = add_front_tag.insert(-1,'</h' + num + '>')
+    add_front_tag = get_tag.insert(0,"<h#{num}>").sub(' ','')
+    add_end_tag = add_front_tag.insert(-1,"</h#{num}>\n\n")
   end
 end
 
@@ -69,9 +69,16 @@ class Paragraph
     Strong.new(@paragraph).send_to_em
   end
 
+  def add_tabs
+    get_tags.split("\n").map do |line|
+      line.insert(0,"\t")
+      line.insert(-1,"\n")
+    end
+  end
+
   def add_p_tag
-    add_front_tag = get_tags.insert(0,'<p>')
-    add_end_tag = add_front_tag.insert(-1,'</p>')
+    add_front_tag = add_tabs.insert(0,"<p>\n")
+    add_end_tag = add_front_tag.insert(-1,"</p>\n\n")
   end
 end
 
@@ -85,8 +92,8 @@ class OrderedList
   end
 
   def add_ol_tag
-    add_front_tag = get_tags.insert(0, "<ol>")
-    add_end_tag = add_front_tag.insert(-1, "</ol>")
+    add_front_tag = get_tags.insert(0, "<ol>\n")
+    add_end_tag = add_front_tag.insert(-1, "</ol>\n\n")
   end
 end
 
@@ -100,8 +107,8 @@ class UnorderedList
   end
 
   def add_ul_tag
-    add_front_tag = get_tags.insert(0, "<ul>")
-    add_end_tag = add_front_tag.insert(-1, "</ul>")
+    add_front_tag = get_tags.insert(0, "<ul>\n")
+    add_end_tag = add_front_tag.insert(-1, "</ul>\n\n")
   end
 end
 

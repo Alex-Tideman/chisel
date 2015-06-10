@@ -28,7 +28,7 @@ class Em
   end
 
   def send_to_links
-    if make_string.include? ('[')
+    if make_string.include? ('](')
       Links.new(make_string).make_string
     else
       make_string
