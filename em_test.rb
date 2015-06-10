@@ -25,5 +25,22 @@ class TestEm < Minitest::Test
     output = Em.new(input)
     assert_equal expected, output.make_string
   end
+
+  def test_sentence_with_link_but_not_sent_to_links
+    input = "I like <em>dinosaurs and tigers</em> on [home page](http://www.espn.com)."
+    expected = "I like <em>dinosaurs and tigers</em> on [home page](http://www.espn.com)."
+    output = Em.new(input)
+    assert_equal expected, output.make_string
+  end
+
+
+  #Test Integration with Links
+  def test_sentence_with_link_sent_to_links
+    input = "I like <em>dinosaurs and tigers</em> on [home page](http://www.espn.com)."
+    expected = "I like <em>dinosaurs and tigers</em> on <a href='http://www.espn.com'>home page</a>."
+    output = Em.new(input)
+    assert_equal expected, output.send_to_links
+  end
+
 end
 

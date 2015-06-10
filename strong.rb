@@ -30,7 +30,7 @@ class Strong
   end
 
   def send_to_em
-    Em.new(make_string).make_string
+    Em.new(make_string).send_to_links
   end
 
 end
