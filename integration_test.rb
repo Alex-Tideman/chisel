@@ -42,8 +42,8 @@ class TestIntegration < Minitest::Test
   end
 
   def test_header_and_paragraph_and_unordered_list_and_tags_links
-    input = "##Alex's blog\n\nHis **favorite** subjects are:\n\n1. Math\n2. Physics\n3. Biology\n\nHis favorite website is [home page](http://www.espn.com 'Sports'). Great site."
-    expected = "<h2>Alex's blog</h2><p>His <strong>favorite</strong> subjects are:</p><ol><li>Math</li>\n<li>Physics</li>\n<li>Biology</li>\n</ol><p>His favorite website is <a href='http://www.espn.com' title='Sports'>home page</a>. Great site.</p>"
+    input = "## Alex's blog\n\nHis **favorite** subjects are:\n\n1. Math\n2. Physics\n3. Biology\n\nHis favorite website is [home page](http://www.espn.com 'Sports'). Great site."
+    expected = "<h2> Alex's blog</h2><p>His <strong>favorite</strong> subjects are:</p><ol><li>Math</li>\n<li>Physics</li>\n<li>Biology</li>\n</ol><p>His favorite website is <a href='http://www.espn.com' title='Sports'>home page</a>. Great site.</p>"
     output = Text.new(input)
     assert_equal expected, output.join_message
   end

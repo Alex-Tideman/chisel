@@ -4,8 +4,6 @@ class Links
     @input = input
   end
 
-  #["I like <em>dinosaurs and tigers</em> on ","home page](http://www.espn.com)."]
-  #["I like <em>dinosaurs and tigers</em> on ",["home page","http://www.espn.com","."]
   def find_link
       sentence_chop = @input.split('[')
       link_chop = sentence_chop[1].split("](")
