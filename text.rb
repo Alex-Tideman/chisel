@@ -77,7 +77,7 @@ class Paragraph
   end
 
   def add_p_tag
-    add_front_tag = add_tabs.insert(0,"<p>\n")
+    add_front_tag = add_tabs.join.insert(0,"<p>\n")
     add_end_tag = add_front_tag.insert(-1,"</p>\n\n")
   end
 end

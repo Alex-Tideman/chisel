@@ -7,7 +7,7 @@
 
 My favorite cuisines are:
 
-* Sushi
+* Sushi, check out [sushi](http://www.sushi.com)
 * Barbeque
 * Mexican
 
