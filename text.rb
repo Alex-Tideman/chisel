@@ -1,3 +1,6 @@
+require_relative 'lists'
+require_relative 'strong'
+
 class Text
   attr_reader :message
 
@@ -8,15 +11,20 @@ class Text
   def send_chunk
     @message.map do |chunk|
       if chunk[0] == '#'
-        Header.new(chunk)
-      elsif chunk[0] == (1...9).to_s
-        OrderedList.new(chunk)
+        Header.new(chunk).add_header_tag
+      elsif chunk[0] == '1'
+        #Need to figure out if I can use '1' || '2' || '3' || ... (gives me string literal warning)
+        OrderedList.new(chunk).add_ol_tag
       elsif chunk[0] == '*'
-        UnorderedList.new(chunk)
+        UnorderedList.new(chunk).add_ul_tag
       else
-        Paragraph.new(chunk).get_final
+        Paragraph.new(chunk).add_p_tag
       end
     end
+  end
+
+  def join_message
+    send_chunk.join
   end
 end
 
@@ -38,33 +46,33 @@ class Header
   end
 
   def remove_hashes
-    @header.gsub('#','')
+    @header.gsub!('#','')
+  end
+
+  def get_tag
+    Strong.new(remove_hashes).send_to_em
   end
 
   def add_header_tag
     num = count_hashes
-    add_front_tag = remove_hashes.insert(0,'<h' + num + '>')
-    add_back_tag = add_front_tag.insert(-1,'</h' + num + '>')
+    add_front_tag = get_tag.insert(0,'<h' + num + '>')
+    add_end_tag = add_front_tag.insert(-1,'</h' + num + '>')
   end
-
 end
 
-
 class Paragraph
-
   def initialize(paragraph)
     @paragraph = paragraph
   end
 
-  def add_paragraph_tag
-    @paragraph.insert(0,'<p>')
-    @paragraph.insert(-1,'</p>')
+  def get_tags
+    Strong.new(@paragraph).send_to_em
   end
 
-  # def get_final
-  #   Strong.new(add_paragraph_tag).send_to_em
-  # end
-
+  def add_p_tag
+    add_front_tag = get_tags.insert(0,'<p>')
+    add_end_tag = add_front_tag.insert(-1,'</p>')
+  end
 end
 
 class OrderedList
@@ -72,14 +80,14 @@ class OrderedList
     @list = list
   end
 
-  def add_ol_tag
-    @list.insert(0, "<ol>")
-    @list.insert(-1, "</ol>")
+  def get_tags
+    Lists.new(@list).get_other_tags
   end
 
-  # def get_final
-  #   Lists.new(add_ol_tag).get_other_tags
-  # end
+  def add_ol_tag
+    add_front_tag = get_tags.insert(0, "<ol>")
+    add_end_tag = add_front_tag.insert(-1, "</ol>")
+  end
 end
 
 class UnorderedList
@@ -95,7 +103,5 @@ class UnorderedList
     add_front_tag = get_tags.insert(0, "<ul>")
     add_end_tag = add_front_tag.insert(-1, "</ul>")
   end
-
-
 end
 

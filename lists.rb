@@ -5,7 +5,7 @@ class Lists
   attr_reader :input
 
   def initialize(input)
-    @input = input.split('\n')
+    @input = input.split("\n")
   end
 
   def lists
@@ -17,13 +17,13 @@ class Lists
 
   def li_tag(line)
     if line[0] == '*'
-      line.gsub!(/\*./, '<li>')
-      line.insert(-1,'</li>\n')
-    elsif line[0] =~ (/\d/)
-      line.gsub!(/\d../, '<li>')
-      line.insert(-1,'</li>\n')
+      line.slice!(0..1)
+      line.insert(0,'<li>')
+      line.insert(-1,"</li>\n")
     else
-      line
+      line.slice!(0..2)
+      line.insert(0,'<li>')
+      line.insert(-1,"</li>\n")
     end
   end
 
@@ -36,4 +36,3 @@ class Lists
   end
 
 end
-
