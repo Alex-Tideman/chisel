@@ -24,11 +24,9 @@ My favorite sports are:
 2. Basketball
 3. Tennis
 4. Football
+5. Ping pong
 
 They can be researched at [home page](http://www.espn.com 'Sports').
-
-Blah blah more tests for parsing.
-Yaaaaaay final test.
 
 ## The End
 
