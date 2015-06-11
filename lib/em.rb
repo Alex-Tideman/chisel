@@ -1,4 +1,4 @@
-require_relative 'links'
+require './lib/links'
 
 class Em
 

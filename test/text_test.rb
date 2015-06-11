@@ -1,10 +1,8 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-# require_relative '../lib/renderer'
-require_relative 'em'
-require_relative 'strong'
-require_relative 'text'
-require_relative 'lists'
+require './lib/text'
+require './lib/lists'
+require './lib/strong'
 
 class TestHeader < Minitest::Test
 
@@ -102,7 +100,5 @@ class TestUnorderedList < Minitest::Test
     output = UnorderedList.new(input)
     assert_equal expected, output.add_ul_tag
   end
-
-
 
 end

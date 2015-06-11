@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-# require './lib/renderer'
-require_relative 'text'
+require './lib/text'
 
 
 class TestIntegration < Minitest::Test

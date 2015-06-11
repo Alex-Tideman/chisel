@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-# require './lib/renderer'
-require_relative 'strong'
+require './lib/strong'
 
 class TestStrong < Minitest::Test
 

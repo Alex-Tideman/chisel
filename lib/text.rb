@@ -1,5 +1,6 @@
-require_relative 'lists'
-require_relative 'strong'
+require './lib/lists'
+require './lib/strong'
+
 
 class Text
   attr_reader :message

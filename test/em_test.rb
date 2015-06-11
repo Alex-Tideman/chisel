@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-# require_relative '../lib/renderer'
-require_relative 'em'
+require './lib/em'
 
 class TestEm < Minitest::Test
 

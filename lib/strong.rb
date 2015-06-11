@@ -1,4 +1,4 @@
-require_relative 'em'
+require './lib/em'
 
 class Strong
 

@@ -1,5 +1,4 @@
-require_relative 'em'
-require_relative 'strong'
+require './lib/strong'
 
 class Lists
   attr_reader :input
