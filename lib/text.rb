@@ -13,8 +13,7 @@ class Text
     @message.map do |chunk|
       if chunk[0] == '#'
         Header.new(chunk).add_header_tag
-      elsif chunk[0] == '1'
-        #Need to figure out if I can use '1' || '2' || '3' || ... (gives me string literal warning)
+      elsif chunk[0].to_i > 0
         OrderedList.new(chunk).add_ol_tag
       elsif chunk[0] == '*'
         UnorderedList.new(chunk).add_ul_tag
